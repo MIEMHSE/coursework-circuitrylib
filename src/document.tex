@@ -1,0 +1,138 @@
+\documentclass[a4paper,14pt,oneside]{extarticle}
+
+% Необходимые пакеты
+\usepackage[T2A]{fontenc}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{etoolbox}
+
+\AtBeginEnvironment{minted}{\singlespacing%
+    \fontsize{12}{12}\selectfont}
+
+\newminted{pycon}{bgcolor=bg, linenos=true, tabsize=4, fontsize=12pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+% \usepackage[pdftex,unicode]{hyperref}
+\usepackage[warn]{mathtext}
+\usepackage{amssymb,amsfonts,amsmath,cite,enumerate,float} % пакеты расширений
+\usepackage{enumitem}
+%\usepackage[dvips]{graphicx} % рисунки
+\usepackage{subfiles}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+
+\usepackage{rotating,booktabs}
+
+\usepackage{python}
+
+% Python
+% \newcommand{\logictable}[1]{%
+% \begin{python}
+% print 1
+% \end{python}
+% }
+
+% Путь к рисункам
+\graphicspath{{images/}} 
+
+% Округление в большую сторону
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+% Меняем поля страницы
+\usepackage{geometry}
+\geometry{left=3cm} % левое поле
+\geometry{right=1cm} % правое поле
+\geometry{top=2cm} % верхнее поле
+\geometry{bottom=2cm} % нижнее поле
+
+\usepackage{indentfirst}
+
+\usepackage{setspace}
+\setlength{\parindent}{1cm}
+
+\usepackage{epstopdf}
+
+
+\usepackage{algorithm2e}
+
+\linespread{1.3} % полуторный интервал
+% \renewcommand{\rmdefault}{ftm} % Times New Roman
+
+% \itemsep=0pt
+
+\sloppy
+
+% \makeatletter
+% \renewcommand\section{\@startsection {section}{1}{\z@}%
+%  {-3.5ex \@plus -1ex \@minus -.2ex}%
+%  {2.3ex \@plus.2ex}%
+%  {\centering\normalfont\Large\bfseries}}
+% \makeatother
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfil}
+\makeatother
+\addto\captionsrussian{\def\refname{Список использованных источников}}
+
+\usepackage[tableposition=top]{caption}
+\usepackage{subcaption}
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
+\DeclareCaptionLabelFormat{gostlisting}{Листинг #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure}
+\captionsetup[table]{labelformat=gosttable}
+\captionsetup[listing]{labelformat=gostlisting}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+
+ 
+% Перечисления цифра.цифра
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\arabic{enumi}}
+\renewcommand{\theenumii}{.\arabic{enumii}}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\theenumiii}{.\arabic{enumiii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+
+% Нумерация разделов
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+\renewcommand{\figurename}{Рисунок}
+
+% Наименование содержания
+% \renewcommand\contentsname{Содержание}
+% \def\contentsname{Содержание}
+
+% Документ
+\begin{document}
+
+% Титульный лист
+\input{titlelist}
+
+\subfile{chapters}
+
+% Тело документа
+\subfile{purpose} % Цель работы
+\subfile{input} % Исходные данные
+\subfile{description} % Принцип работы
+\subfile{sourcedev_simple}
+\subfile{sourcedev_mux}
+\subfile{sourcedev_adder}
+\subfile{sourcedev_cmp}
+\subfile{adapters_matlab}
+\subfile{adapters_graph}
+\subfile{adapters_symbol}
+\subfile{adapters_console}
+\subfile{adapters_latex}
+\subfile{dependencies} % Принцип работы
+\subfile{conclusion}
+\subfile{literature}
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass[document.tex]{subfiles}
+\begin{document}
+\begin{sidewaystable}
+\caption{Таблица истинности заданного мультиплексора}
+\label{tabular:logictable}
+\medskip
+\resizebox{\linewidth}{!}{%
+\tabcolsep=2pt
+\begin{tabular}{|ccc|cccc|cccccccccccccc|c|}\toprule
+$V_{0}$&$V_{1}$&$V_{2}$&$A_{3}$&$A_{2}$&$A_{1}$&$A_{0}$&$D_{0}$&$D_{1}$&$D_{2}$&$D_{3}$&$D_{4}$&
+$D_{5}$&$D_{6}$&$D_{7}$&$D_{8}$&$D_{9}$&$D_{10}$&$D_{11}$&$D_{12}$&$D_{13}$&$Y$\\
+\hline
+0&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&0 \\
+x&0&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&0 \\
+x&x&1&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&x&0 \\
+1&1&0&0&0&0&0&1/0&x&x&x&x&x&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&0&0&1&x&1/0&x&x&x&x&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&0&1&0&x&x&1/0&x&x&x&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&0&1&1&x&x&x&1/0&x&x&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&1&0&0&x&x&x&x&1/0&x&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&1&0&1&x&x&x&x&x&1/0&x&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&1&1&0&x&x&x&x&x&x&1/0&x&x&x&x&x&x&x&1/0 \\
+1&1&0&0&1&1&1&x&x&x&x&x&x&x&1/0&x&x&x&x&x&x&1/0 \\
+1&1&0&1&0&0&0&x&x&x&x&x&x&x&x&1/0&x&x&x&x&x&1/0 \\
+1&1&0&1&0&0&1&x&x&x&x&x&x&x&x&x&1/0&x&x&x&x&1/0 \\
+1&1&0&1&0&1&0&x&x&x&x&x&x&x&x&x&x&1/0&x&x&x&1/0 \\
+1&1&0&1&0&1&1&x&x&x&x&x&x&x&x&x&x&x&1/0&x&x&1/0 \\
+1&1&0&1&1&0&0&x&x&x&x&x&x&x&x&x&x&x&x&1/0&x&1/0 \\
+1&1&0&1&1&0&1&x&x&x&x&x&x&x&x&x&x&x&x&x&1/0&1/0 \\
+1&1&0&1&1&1&0&x&x&x&x&x&x&x&x&x&x&x&x&x&x&0 \\
+1&1&0&1&1&1&1&x&x&x&x&x&x&x&x&x&x&x&x&x&x&0 \\
+
+\bottomrule
+\end{tabular}}
+\end{sidewaystable}
+\end{document}

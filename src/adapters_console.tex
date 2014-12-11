@@ -1,0 +1,73 @@
+\documentclass[document.tex]{subfiles} 
+\begin{document}
+
+\clearpage
+\subsection{Таблицы истинности в текстовом представлении}
+Адаптеры, отвечающие за генерацию таблиц истинности, именуются
+ConsoleTruthTableAdapter и TwosComplementConsoleTruthTableAdapter для
+генерации простой таблицы истинности и таблицы истинности с отображением
+десятичных представлений в обратном и дополнительном коде. Описание первого
+представлено в листинге~\ref{lst:console}.
+
+\begin{listing}[ht]
+\begin{minted}[linenos=true]{python}
+class ConsoleTruthTableAdapter(AbstractAdapter):
+    public_properties = ('console_table',)
+    default_method = lambda self: self.console_table
+\end{minted}
+\caption{Программное описание класса адаптера таблиц истинности}
+\label{lst:console}
+\end{listing}
+
+Описание более функционального адаптера представлено в
+листинге~\ref{lst:console2c}.
+
+\begin{listing}[ht]
+\begin{minted}[linenos=true]{python}
+class TwosComplementConsoleTruthTableAdapter(ConsoleTruthTableAdapter):
+    def default_method(self):
+        min_len = len(self._device.output_signals)
+        for signals_name in self._device.mandatory_signals:
+            if signals_name not in ['output_signals', 'strobe_signals']:
+                if len(self._device[signals_name]) < min_len:
+                    min_len = len(self._device[signals_name])
+        self._options['digits'] = min_len
+        return self.console_table
+\end{minted}
+\caption{Программное описание класса адаптера таблиц истинности в
+дополнительном коде}
+\label{lst:console2c}
+\end{listing}
+
+\clearpage
+
+Пример применения более функционального адаптера к устройству (в данном случае,
+отрицание в дополнительном коде) хорошо иллюстрируется кодом, представленном в
+листинге~\ref{lst:console2cgen}.
+
+\begin{listing}[ht]
+\begin{minted}{pycon}
+>>> from circuitry.adapters.console import \ 
+... 	TwosComplementConsoleTruthTableAdapter
+>>> from circuitry.devices.adder import DeviceNeg
+>>>
+>>> device_neg = DeviceNeg(strobe_signals='v:1', data_signals='d:3',
+...                        output_signals='o:3', 
+...                        strobe_signals_subs=dict(v0=1))
+>>>
+>>> print TwosComplementConsoleTruthTableAdapter(device_neg).default_method()
+1 (1, 1)     000 (0, 0)     000 (0, 0)     
+1 (1, 1)     001 (1, 1)     111 (-7, -1)   
+1 (1, 1)     010 (2, 2)     110 (-6, -2)   
+1 (1, 1)     011 (3, 3)     101 (-5, -3)   
+1 (1, 1)     100 (-4, -4)   100 (-4, -4)   
+1 (1, 1)     101 (-5, -3)   011 (3, 3)     
+1 (1, 1)     110 (-6, -2)   010 (2, 2)     
+1 (1, 1)     111 (-7, -1)   001 (1, 1)   
+>>>
+\end{minted}
+\caption{Генерация таблицы истинности}
+\label{lst:console2cgen}
+\end{listing}
+
+\end{document}
